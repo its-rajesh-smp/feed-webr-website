@@ -1,16 +1,16 @@
 import { useAppSelector } from "@/common/hooks/useAppSelector";
 import { Navigate, Outlet } from "react-router-dom";
 
-function GuestGuard() {
+function PrivateGuard() {
   const isCurrentUserAuthenticated = useAppSelector(
     (state) => state.authUserReducer.isAuthenticated
   );
 
-  if (!isCurrentUserAuthenticated) {
+  if (isCurrentUserAuthenticated) {
     return <Outlet />;
   } else {
-    return <Navigate to="/practice" />;
+    return <Navigate to="/login" />;
   }
 }
 
-export default GuestGuard;
+export default PrivateGuard;

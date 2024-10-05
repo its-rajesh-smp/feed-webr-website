@@ -3,11 +3,14 @@ import GuestGuard from "../guards/GuestGuard";
 
 const guestRoutes = [
   {
-    path: "/",
     element: <GuestGuard />,
     children: [
       {
         path: "/",
+        element: <Auth />,
+      },
+      {
+        path: "/login",
         element: <Auth />,
       },
     ],
