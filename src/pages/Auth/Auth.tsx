@@ -1,5 +1,5 @@
-import AuthLeftSideWindow from "./components/LeftSide/AuthLeftSideWindow";
-import AuthRightSideWindow from "./components/RightSide/AuthRightSideWindow";
+import AuthLeftSideWindow from "./components/leftSide/AuthLeftSideWindow";
+import AuthRightSideWindow from "./components/rightSide/AuthRightSideWindow";
 
 function Auth() {
   return (
