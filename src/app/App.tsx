@@ -1,13 +1,9 @@
-import Auth from "@/pages/auth/Auth";
+import router from "@/routes/router";
+import { RouterProvider } from "react-router-dom";
 import "./App.css";
 
 function App() {
-  return (
-    <>
-      <Auth />
-      {/* <Practice /> */}
-    </>
-  );
+  return <RouterProvider router={router} />;
 }
 
 export default App;
