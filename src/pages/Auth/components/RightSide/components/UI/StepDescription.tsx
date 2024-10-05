@@ -1,6 +1,6 @@
-export interface StepDescriptionProps {
-  title?: string;
-  description?: string;
+import { AuthStepDetails } from "@/pages/Auth/types/authStep.type";
+
+export interface StepDescriptionProps extends AuthStepDetails {
   alignment?: "left" | "right" | "center";
 }
 
