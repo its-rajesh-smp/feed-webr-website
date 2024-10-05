@@ -1,4 +1,4 @@
-import { AuthStepDetails } from "@/pages/Auth/types/authStep.type";
+import { AuthStepDetails } from "@/pages/auth/types/authStep.type";
 
 export interface StepDescriptionProps extends AuthStepDetails {
   alignment?: "left" | "right" | "center";
