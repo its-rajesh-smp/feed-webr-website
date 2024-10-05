@@ -1,4 +1,4 @@
-import authReducers from "@/pages/Auth/reducers/authReducers";
+import authReducers from "@/pages/auth/reducers/authReducers";
 import { configureStore } from "@reduxjs/toolkit";
 
 const reduxStore = configureStore({

@@ -5,8 +5,8 @@ import { useAppDispatch } from "@/common/hooks/useAppDispatch";
 import {
   AuthStepDescriptions,
   AuthSteps,
-} from "@/pages/Auth/constants/authStep.const";
-import { setAuthStep } from "@/pages/Auth/reducers/authStepReducer";
+} from "@/pages/auth/constants/authStep.const";
+import { setAuthStep } from "@/pages/auth/reducers/authStepReducer";
 import AuthProviderButtonContainer from "../authProviderButtonContainer/AuthProviderButtonContainer";
 import OrContinueWith from "../UI/OrContinueWith";
 import StepDescription from "../UI/StepDescription";
