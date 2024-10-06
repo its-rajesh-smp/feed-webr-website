@@ -7,9 +7,9 @@ import {
   AuthSteps,
 } from "@/pages/auth/constants/authStep.const";
 import { setAuthStep } from "@/pages/auth/reducers/authStepReducer";
-import AuthProviderButtonContainer from "../authProviderButtonContainer/AuthProviderButtonContainer";
-import OrContinueWith from "../UI/OrContinueWith";
-import StepDescription from "../UI/StepDescription";
+import AuthProviderButtonContainer from "./AuthProviderButtonContainer";
+import OrContinueWith from "./UI/OrContinueWith";
+import StepDescription from "./UI/StepDescription";
 
 function Register() {
   const dispatch = useAppDispatch();

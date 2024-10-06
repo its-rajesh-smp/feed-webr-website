@@ -4,9 +4,9 @@ import {
   InputOTPGroup,
   InputOTPSlot,
 } from "@/common/components/shadcn/ui/input-otp";
-import { AuthStepDescriptions } from "../../../../constants/authStep.const";
-import BackStepButton from "../UI/BackStepButton";
-import StepDescription from "../UI/StepDescription";
+import { AuthStepDescriptions } from "@/pages/auth/constants/authStep.const";
+import BackStepButton from "./UI/BackStepButton";
+import StepDescription from "./UI/StepDescription";
 
 function OTPVerification() {
   return (

@@ -9,9 +9,9 @@ import {
 } from "@/pages/auth/constants/authStep.const";
 import { setAuthStep } from "@/pages/auth/reducers/authStepReducer";
 import { useState } from "react";
-import AuthProviderButtonContainer from "../authProviderButtonContainer/AuthProviderButtonContainer";
-import OrContinueWith from "../UI/OrContinueWith";
-import StepDescription from "../UI/StepDescription";
+import AuthProviderButtonContainer from "./AuthProviderButtonContainer";
+import OrContinueWith from "./UI/OrContinueWith";
+import StepDescription from "./UI/StepDescription";
 
 function Login() {
   const dispatch = useAppDispatch();
