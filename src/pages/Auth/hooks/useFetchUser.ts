@@ -6,7 +6,7 @@ import { FETCH_USER } from "../services/auth.gql";
 function useFetchUser() {
   const dispatch = useAppDispatch();
 
-  useQuery(FETCH_USER, {
+  const { loading, error } = useQuery(FETCH_USER, {
     onCompleted(response) {
       dispatch(
         setAuthUser({
@@ -16,6 +16,8 @@ function useFetchUser() {
       );
     },
   });
+
+  return [loading, error];
 }
 
 export default useFetchUser;
