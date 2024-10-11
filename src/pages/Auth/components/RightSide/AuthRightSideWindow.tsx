@@ -1,8 +1,8 @@
 import { useAppSelector } from "@/common/hooks/useAppSelector";
 import { AuthSteps } from "../../constants/authStep.const";
 import Login from "./components/Login";
-import OTPVerification from "./components/otpVerification/OTPVerification";
-import Register from "./components/register/Register";
+import OTPVerification from "./components/OTPVerification";
+import Register from "./components/Register";
 
 function AuthRightSideWindow() {
   const currentAuthStep = useAppSelector((state) => state.authStepReducer);

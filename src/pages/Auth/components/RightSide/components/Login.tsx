@@ -20,6 +20,7 @@ function Login() {
     password: "",
   });
 
+  // Handle Login Button Click
   const onLoginBtnClick = (e: any) => {
     e.preventDefault();
 
