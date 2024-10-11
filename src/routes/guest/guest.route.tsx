@@ -13,6 +13,10 @@ const guestRoutes = [
         path: "/login",
         element: <Auth />,
       },
+      {
+        path: "/register",
+        element: <Auth />,
+      },
     ],
   },
 ];
