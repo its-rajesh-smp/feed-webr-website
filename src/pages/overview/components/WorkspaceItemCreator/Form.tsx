@@ -1,11 +1,17 @@
 import { Button } from "@/common/components/shadcn/button";
 import { Input } from "@/common/components/shadcn/input";
 import { Card, CardContent } from "@/common/components/shadcn/ui/card";
-import { Checkbox } from "@/common/components/shadcn/ui/checkbox";
 import { Label } from "@/common/components/shadcn/ui/label";
 import { Textarea } from "@/common/components/shadcn/ui/textarea";
+import { useContext } from "react";
+import WorkspaceItemCreatorContext from "../../context/WorkspaceItemContext";
+import FormQuestionsContainer from "./FormQuestionsContainer";
 
 function Form() {
+  const { workspaceData, setWorkspaceData } = useContext(
+    WorkspaceItemCreatorContext
+  );
+
   return (
     <Card>
       <CardContent className="p-6">
@@ -14,13 +20,15 @@ function Form() {
             <Label htmlFor="space-name">Space name *</Label>
             <Input
               id="space-name"
-              //   value={spaceName}
-              //   onChange={(e) => setSpaceName(e.target.value)}
+              value={workspaceData.name}
+              onChange={(e) =>
+                setWorkspaceData({ ...workspaceData, name: e.target.value })
+              }
               placeholder="Enter space name"
             />
             <p className="text-sm text-gray-500 mt-1">
               Public URL is: testimonial.to/
-              {/* {spaceName.toLowerCase().replace(/\s+/g, "-")} */}
+              {workspaceData.name.toLowerCase().replace(/\s+/g, "-")}
             </p>
           </div>
 
@@ -29,21 +37,6 @@ function Form() {
             <div className="flex items-center space-x-2 mt-1">
               <div className="w-12 h-12 bg-gray-200 rounded-lg"></div>
               <Button variant="outline">Change</Button>
-              <div className="flex items-center">
-                <Checkbox
-                  id="square-logo"
-                  //   checked={isSquareLogo}
-                  //   onCheckedChange={(checked) =>
-                  //     setIsSquareLogo(checked as boolean)
-                  //   }
-                />
-                <label
-                  htmlFor="square-logo"
-                  className="ml-2 text-sm font-medium"
-                >
-                  square?
-                </label>
-              </div>
             </div>
           </div>
 
@@ -51,9 +44,11 @@ function Form() {
             <Label htmlFor="header-title">Header title *</Label>
             <Input
               id="header-title"
-              //   value={headerTitle}
-              //   onChange={(e) => setHeaderTitle(e.target.value)}
-              placeholder="Would you like to give a shoutout for xyz?"
+              value={workspaceData.title}
+              onChange={(e) =>
+                setWorkspaceData({ ...workspaceData, title: e.target.value })
+              }
+              placeholder="Would you like to give a shout-out for xyz?"
             />
           </div>
 
@@ -61,11 +56,21 @@ function Form() {
             <Label htmlFor="custom-message">Your custom message *</Label>
             <Textarea
               id="custom-message"
-              //   value={customMessage}
-              //   onChange={(e) => setCustomMessage(e.target.value)}
+              value={workspaceData.customMessage}
+              onChange={(e) =>
+                setWorkspaceData({
+                  ...workspaceData,
+                  customMessage: e.target.value,
+                })
+              }
               placeholder="Write a warm message to your customers, and give them simple directions on how to make the best testimonial."
               rows={4}
             />
+          </div>
+
+          <div>
+            <Label htmlFor="custom-message">Your custom questions</Label>
+            <FormQuestionsContainer />
           </div>
 
           <Button type="submit" className="w-full">

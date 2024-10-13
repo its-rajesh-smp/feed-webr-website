@@ -1,6 +1,7 @@
 import {
   DialogContent,
   Dialog as DialogPrimitive,
+  DialogTitle,
   DialogTrigger,
 } from "../shadcn/ui/dialog";
 
@@ -13,8 +14,11 @@ export interface DialogProps {
 function Dialog({ children, trigger, open }: DialogProps) {
   return (
     <DialogPrimitive open={open}>
-      {trigger && <DialogTrigger>{trigger}</DialogTrigger>}
-      <DialogContent className="max-w-6xl">
+      <DialogTrigger className={`${!trigger && "hidden"}`}>
+        {trigger && trigger}
+      </DialogTrigger>
+      <DialogContent className="max-w-6xl h-full overflow-y-scroll">
+        <DialogTitle />
         {children && children}
       </DialogContent>
     </DialogPrimitive>
