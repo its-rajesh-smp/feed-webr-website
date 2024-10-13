@@ -6,11 +6,33 @@ import { Textarea } from "@/common/components/shadcn/ui/textarea";
 import { useContext } from "react";
 import WorkspaceItemCreatorContext from "../../context/WorkspaceItemContext";
 import FormQuestionsContainer from "./FormQuestionsContainer";
+import { ThumbsUp } from "lucide-react";
 
 function Form() {
   const { workspaceData, setWorkspaceData } = useContext(
     WorkspaceItemCreatorContext
   );
+
+  const onClickImageChange = (e: any) => {
+    e.preventDefault();
+    const newDocument = document.createElement("input");
+    newDocument.type = "file";
+    newDocument.accept = "image/*";
+    newDocument.onchange = (event) => {
+      const file = (event.target as HTMLInputElement).files?.[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = () => {
+          setWorkspaceData((prev) => ({
+            ...prev,
+            logo: reader.result as string,
+          }));
+        };
+        reader.readAsDataURL(file);
+      }
+    };
+    newDocument.click();
+  };
 
   return (
     <Card>
@@ -35,8 +57,20 @@ function Form() {
           <div>
             <Label htmlFor="space-logo">Space logo *</Label>
             <div className="flex items-center space-x-2 mt-1">
-              <div className="w-12 h-12 bg-gray-200 rounded-lg"></div>
-              <Button variant="outline">Change</Button>
+              <div className="w-12 h-12 bg-purple-600 flex items-center justify-center rounded-lg">
+                {workspaceData?.logo ? (
+                  <img
+                    src={workspaceData.logo}
+                    alt="logo"
+                    className="rounded-lg"
+                  />
+                ) : (
+                  <ThumbsUp className="text-white w-8 h-8" />
+                )}
+              </div>
+              <Button onClick={onClickImageChange} variant="outline">
+                Change
+              </Button>
             </div>
           </div>
 

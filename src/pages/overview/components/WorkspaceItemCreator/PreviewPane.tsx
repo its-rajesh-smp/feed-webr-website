@@ -15,7 +15,15 @@ function PreviewPane() {
         </div>
         <div className="text-center mb-6">
           <div className="bg-purple-600 rounded-full w-16 h-16 mx-auto mb-4 flex items-center justify-center">
-            <ThumbsUp className="text-white w-8 h-8" />
+            {workspaceData?.logo ? (
+              <img
+                src={workspaceData.logo}
+                alt="logo"
+                className="rounded-full w-16 h-16 object-cover"
+              />
+            ) : (
+              <ThumbsUp className="text-white w-8 h-8" />
+            )}
           </div>
           <h2 className="text-2xl font-bold mb-2">
             {workspaceData?.title || "Header goes here..."}
