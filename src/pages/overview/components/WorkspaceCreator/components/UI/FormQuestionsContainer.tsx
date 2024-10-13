@@ -1,7 +1,7 @@
 import { Button } from "@/common/components/shadcn/button";
 import { useContext } from "react";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
-import WorkspaceItemCreatorContext from "../../../../context/WorkspaceItemContext";
+import WorkspaceCreatorContext from "../../../../context/WorkspaceCreatorContext";
 import FormQuestion from "./FormQuestion";
 
 function FormQuestionsContainer() {
@@ -9,7 +9,7 @@ function FormQuestionsContainer() {
     workspaceData: { questions },
     setWorkspaceData,
     handleAddQuestion,
-  } = useContext(WorkspaceItemCreatorContext);
+  } = useContext(WorkspaceCreatorContext);
 
   /**
    * Handles the drag end event of the questions list.

@@ -1,7 +1,7 @@
 import OverviewCardsContainer from "./components/OverviewCardsContainer";
 import CreateWorkspace from "./components/UI/CreateWorkspace";
 import SearchWorkspace from "./components/UI/SearchWorkspace";
-import WorkspaceItemsContainer from "./components/WorkspaceItemsContainer";
+import WorkspacesContainer from "./components/WorkspacesContainer";
 
 function Overview() {
   return (
@@ -18,7 +18,7 @@ function Overview() {
           <SearchWorkspace />
         </div>
 
-        <WorkspaceItemsContainer />
+        <WorkspacesContainer />
       </div>
     </div>
   );

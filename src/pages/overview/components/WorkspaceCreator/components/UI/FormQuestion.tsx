@@ -1,10 +1,10 @@
-import WorkspaceItemCreatorContext from "@/pages/overview/context/WorkspaceItemContext";
+import WorkspaceCreatorContext from "@/pages/overview/context/WorkspaceCreatorContext";
 import { WorkspaceQuestion } from "@/pages/overview/types/overview.type";
 import { useContext } from "react";
 import { RiDraggable } from "react-icons/ri";
 
 function FormQuestion({ id, question }: WorkspaceQuestion) {
-  const { onChangeQuestionText } = useContext(WorkspaceItemCreatorContext);
+  const { onChangeQuestionText } = useContext(WorkspaceCreatorContext);
 
   return (
     <div className="flex items-center  mb-4  gap-4">

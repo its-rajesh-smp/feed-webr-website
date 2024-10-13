@@ -5,13 +5,13 @@ import { Label } from "@/common/components/shadcn/ui/label";
 import { Textarea } from "@/common/components/shadcn/ui/textarea";
 import { useContext } from "react";
 
-import WorkspaceItemCreatorContext from "@/pages/overview/context/WorkspaceItemContext";
+import WorkspaceCreatorContext from "@/pages/overview/context/WorkspaceCreatorContext";
 import { ThumbsUp } from "lucide-react";
 import FormQuestionsContainer from "./UI/FormQuestionsContainer";
 
 function Form() {
   const { workspaceData, setWorkspaceData } = useContext(
-    WorkspaceItemCreatorContext
+    WorkspaceCreatorContext
   );
 
   const onClickImageChange = (e: any) => {

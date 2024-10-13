@@ -7,7 +7,7 @@ import {
 import { Card, CardContent } from "@/common/components/shadcn/ui/card";
 import { MoreVertical } from "lucide-react";
 
-function WorkspaceItem() {
+function Workspace() {
   return (
     <Card>
       <CardContent className="flex items-center justify-between p-4">
@@ -32,4 +32,4 @@ function WorkspaceItem() {
   );
 }
 
-export default WorkspaceItem;
+export default Workspace;

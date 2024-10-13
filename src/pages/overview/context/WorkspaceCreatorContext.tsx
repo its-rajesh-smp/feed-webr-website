@@ -1,13 +1,13 @@
 import React, { Dispatch, SetStateAction, useState } from "react";
-import { WorkspaceItem } from "../types/overview.type";
+import { Workspace } from "../types/overview.type";
 
 /**
  * The context for the WorkspaceItemCreator component. This context holds the data for the workspace item
  * and a function to update the data.
  */
-const WorkspaceItemCreatorContext = React.createContext<{
-  workspaceData: WorkspaceItem;
-  setWorkspaceData: Dispatch<SetStateAction<WorkspaceItem>>;
+const WorkspaceCreatorContext = React.createContext<{
+  workspaceData: Workspace;
+  setWorkspaceData: Dispatch<SetStateAction<Workspace>>;
   handleRemoveQuestion: (id: string) => void;
   handleAddQuestion: (e: any) => void;
   onChangeQuestionText: (e: any, questionId: string) => void;
@@ -32,12 +32,12 @@ const WorkspaceItemCreatorContext = React.createContext<{
  * @param {{ children: React.ReactNode }} props The children of the component.
  * @returns {JSX.Element}
  */
-function WorkspaceItemCreatorContextProvider({
+function WorkspaceCreatorContextProvider({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const [workspaceData, setWorkspaceData] = useState<WorkspaceItem>({
+  const [workspaceData, setWorkspaceData] = useState<Workspace>({
     name: "",
     customMessage: "",
     id: "",
@@ -107,7 +107,7 @@ function WorkspaceItemCreatorContextProvider({
   };
 
   return (
-    <WorkspaceItemCreatorContext.Provider
+    <WorkspaceCreatorContext.Provider
       value={{
         workspaceData,
         setWorkspaceData,
@@ -117,9 +117,9 @@ function WorkspaceItemCreatorContextProvider({
       }}
     >
       {children}
-    </WorkspaceItemCreatorContext.Provider>
+    </WorkspaceCreatorContext.Provider>
   );
 }
 
-export default WorkspaceItemCreatorContext;
-export { WorkspaceItemCreatorContextProvider };
+export default WorkspaceCreatorContext;
+export { WorkspaceCreatorContextProvider };

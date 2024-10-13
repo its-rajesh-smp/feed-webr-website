@@ -1,11 +1,11 @@
 import { Button } from "@/common/components/shadcn/button";
 import { Card } from "@/common/components/shadcn/ui/card";
-import WorkspaceItemCreatorContext from "@/pages/overview/context/WorkspaceItemContext";
+import WorkspaceCreatorContext from "@/pages/overview/context/WorkspaceCreatorContext";
 import { Paperclip, ThumbsUp } from "lucide-react";
 import { useContext } from "react";
 
 function PreviewPane() {
-  const { workspaceData } = useContext(WorkspaceItemCreatorContext);
+  const { workspaceData } = useContext(WorkspaceCreatorContext);
 
   return (
     <div>
