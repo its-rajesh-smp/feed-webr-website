@@ -39,10 +39,22 @@ export interface ButtonProps
     VariantProps<typeof buttonVariants> {
   asChild?: boolean;
   icon?: React.ReactNode;
+  containerClassName?: string;
 }
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant, size, asChild = false, icon, ...props }, ref) => {
+  (
+    {
+      className,
+      variant,
+      size,
+      asChild = false,
+      containerClassName,
+      icon,
+      ...props
+    },
+    ref
+  ) => {
     const Comp = asChild ? Slot : "button";
 
     if (icon) {
@@ -55,7 +67,9 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
           {...props}
         >
           {icon}
-          {props.children && <p>{props.children}</p>}
+          {props.children && (
+            <p className={containerClassName}>{props.children}</p>
+          )}
         </Comp>
       );
     }

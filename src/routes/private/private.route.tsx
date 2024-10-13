@@ -1,4 +1,4 @@
-import Practice from "@/pages/practice/Practice";
+import Overview from "@/pages/overview/Overview";
 import PrivateGuard from "../guards/PrivateGuard";
 
 const privateRoutes = [
@@ -7,11 +7,11 @@ const privateRoutes = [
     children: [
       {
         path: "/",
-        element: <Practice />,
+        element: <Overview />,
       },
       {
         path: "/practice",
-        element: <Practice />,
+        element: <Overview />,
       },
     ],
   },
