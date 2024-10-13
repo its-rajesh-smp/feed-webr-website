@@ -1,30 +1,35 @@
 import React, { Dispatch, SetStateAction, useState } from "react";
 import { Workspace } from "../types/overview.type";
 
-/**
- * The context for the WorkspaceItemCreator component. This context holds the data for the workspace item
- * and a function to update the data.
- */
-const WorkspaceCreatorContext = React.createContext<{
+interface WorkspaceCreatorContextProps {
   workspaceData: Workspace;
   setWorkspaceData: Dispatch<SetStateAction<Workspace>>;
   handleRemoveQuestion: (id: string) => void;
   handleAddQuestion: (e: any) => void;
   onChangeQuestionText: (e: any, questionId: string) => void;
-}>({
-  workspaceData: {
-    name: "",
-    customMessage: "",
-    id: "",
-    logo: "",
-    questions: [],
-    title: "",
-  },
-  setWorkspaceData: () => {},
-  handleRemoveQuestion: () => {},
-  handleAddQuestion: () => {},
-  onChangeQuestionText: () => {},
-});
+  handleCreateWorkspace: (e: any) => void;
+}
+
+/**
+ * The context for the WorkspaceItemCreator component. This context holds the data for the workspace item
+ * and a function to update the data.
+ */
+const WorkspaceCreatorContext =
+  React.createContext<WorkspaceCreatorContextProps>({
+    workspaceData: {
+      name: "",
+      customMessage: "",
+      id: "",
+      logo: "",
+      questions: [],
+      title: "",
+    },
+    setWorkspaceData: () => {},
+    handleRemoveQuestion: () => {},
+    handleAddQuestion: () => {},
+    onChangeQuestionText: () => {},
+    handleCreateWorkspace: () => {},
+  });
 
 /**
  * Provides the context for the WorkspaceItemCreator component. This context
@@ -106,6 +111,11 @@ function WorkspaceCreatorContextProvider({
     });
   };
 
+  const handleCreateWorkspace = (e: any) => {
+    e.preventDefault();
+    console.log(workspaceData);
+  };
+
   return (
     <WorkspaceCreatorContext.Provider
       value={{
@@ -114,6 +124,7 @@ function WorkspaceCreatorContextProvider({
         handleRemoveQuestion,
         handleAddQuestion,
         onChangeQuestionText,
+        handleCreateWorkspace,
       }}
     >
       {children}
