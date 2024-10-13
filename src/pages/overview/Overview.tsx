@@ -1,11 +1,3 @@
-import { Button } from "@/common/components/shadcn/button";
-import {
-  Avatar,
-  AvatarFallback,
-  AvatarImage,
-} from "@/common/components/shadcn/ui/avatar";
-import { Card, CardContent } from "@/common/components/shadcn/ui/card";
-import { MoreVertical } from "lucide-react";
 import OverviewCardsContainer from "./components/OverviewCardsContainer";
 import CreateWorkspace from "./components/UI/CreateWorkspace";
 import SearchWorkspace from "./components/UI/SearchWorkspace";

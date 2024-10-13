@@ -17,7 +17,7 @@ function Dialog({ children, trigger, open }: DialogProps) {
       <DialogTrigger className={`${!trigger && "hidden"}`}>
         {trigger && trigger}
       </DialogTrigger>
-      <DialogContent className="max-w-6xl h-full overflow-y-scroll">
+      <DialogContent className="max-w-6xl h-full p-0 md:px-2 lg:px-6 overflow-y-scroll">
         <DialogTitle />
         {children && children}
       </DialogContent>

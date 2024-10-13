@@ -6,7 +6,6 @@ import WorkspaceItemCreator from "../WorkspaceItemCreator/WorkspaceItemCreator";
 function CreateWorkspace() {
   return (
     <Dialog
-      open
       trigger={
         <Button
           containerClassName="md:block hidden"

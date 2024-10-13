@@ -1,8 +1,8 @@
 import { Button } from "@/common/components/shadcn/button";
 import { useContext } from "react";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
-import WorkspaceItemCreatorContext from "../../context/WorkspaceItemContext";
-import FormQuestion from "./UI/FormQuestion";
+import WorkspaceItemCreatorContext from "../../../../context/WorkspaceItemContext";
+import FormQuestion from "./FormQuestion";
 
 function FormQuestionsContainer() {
   let {

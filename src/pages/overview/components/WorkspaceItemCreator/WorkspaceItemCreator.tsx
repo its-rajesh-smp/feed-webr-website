@@ -1,6 +1,6 @@
 import { WorkspaceItemCreatorContextProvider } from "../../context/WorkspaceItemContext";
-import Form from "./Form";
-import PreviewPane from "./PreviewPane";
+import Form from "./components/Form";
+import PreviewPane from "./components/PreviewPane";
 
 function WorkspaceItemCreator() {
   return (
