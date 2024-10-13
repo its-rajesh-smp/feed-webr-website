@@ -1,17 +1,24 @@
 import { Button } from "@/common/components/shadcn/button";
+import Dialog from "@/common/components/UI/Dialog";
 import { Plus } from "lucide-react";
+import WorkspaceItemCreator from "../WorkspaceItemCreator/WorkspaceItemCreator";
 
 function CreateWorkspace() {
   return (
-    <div>
-      <Button
-        containerClassName="md:block hidden"
-        icon={<Plus />}
-        type="button"
-      >
-        Create New Workspace
-      </Button>
-    </div>
+    <Dialog
+      open
+      trigger={
+        <Button
+          containerClassName="md:block hidden"
+          icon={<Plus />}
+          type="button"
+        >
+          Create New Workspace
+        </Button>
+      }
+    >
+      <WorkspaceItemCreator />
+    </Dialog>
   );
 }
 
