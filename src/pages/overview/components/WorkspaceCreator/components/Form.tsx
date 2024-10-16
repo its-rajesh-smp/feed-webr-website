@@ -5,7 +5,11 @@ import { Label } from "@/common/components/shadcn/ui/label";
 import { Textarea } from "@/common/components/shadcn/ui/textarea";
 import { useContext } from "react";
 
+import { MAX_UPLOAD_SIZE } from "@/common/constants/file.const";
 import WorkspaceCreatorContext from "@/pages/overview/context/WorkspaceCreatorContext";
+import createWorkspaceSchema from "@/pages/overview/schemas/createWorkspace.schema";
+import { CREATE_WORKSPACE } from "@/pages/overview/services/overview.gql";
+import { useMutation } from "@apollo/client";
 import { ThumbsUp } from "lucide-react";
 import FormQuestionsContainer from "./UI/FormQuestionsContainer";
 
@@ -14,25 +18,59 @@ function Form() {
     WorkspaceCreatorContext
   );
 
+  const [createWorkspace, { loading }] = useMutation(CREATE_WORKSPACE);
+
   const onClickImageChange = (e: any) => {
     e.preventDefault();
     const newDocument = document.createElement("input");
     newDocument.type = "file";
     newDocument.accept = "image/*";
+    newDocument.multiple = false;
+
     newDocument.onchange = (event) => {
       const file = (event.target as HTMLInputElement).files?.[0];
+
+      // Validate file size
+      if (file && file?.size > MAX_UPLOAD_SIZE) {
+        alert("File size must be less than 5MB");
+        return;
+      }
+
       if (file) {
         const reader = new FileReader();
+        reader.readAsDataURL(file);
+
         reader.onload = () => {
           setWorkspaceData((prev) => ({
             ...prev,
-            logo: reader.result as string,
+            logoUrl: reader.result as string,
+            logoFile: file,
           }));
         };
-        reader.readAsDataURL(file);
       }
     };
     newDocument.click();
+  };
+
+  const handleCreateWorkspace = async (e: any) => {
+    e.preventDefault();
+    try {
+      const validatedData = await createWorkspaceSchema.parse(workspaceData);
+
+      const payload = {
+        ...validatedData,
+        logoFile: workspaceData.logoFile,
+      };
+
+      const data = await createWorkspace({
+        variables: {
+          workspaceInput: payload,
+        },
+      });
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -59,9 +97,9 @@ function Form() {
             <Label htmlFor="space-logo">Space logo *</Label>
             <div className="flex items-center space-x-2 mt-1">
               <div className="w-12 h-12 bg-purple-600 flex items-center justify-center rounded-lg">
-                {workspaceData?.logo ? (
+                {workspaceData?.logoUrl ? (
                   <img
-                    src={workspaceData.logo}
+                    src={workspaceData.logoUrl}
                     alt="logo"
                     className="rounded-lg"
                   />
@@ -108,7 +146,11 @@ function Form() {
             <FormQuestionsContainer />
           </div>
 
-          <Button type="submit" className="w-full">
+          <Button
+            onClick={handleCreateWorkspace}
+            type="submit"
+            className="w-full"
+          >
             Create Space
           </Button>
         </form>

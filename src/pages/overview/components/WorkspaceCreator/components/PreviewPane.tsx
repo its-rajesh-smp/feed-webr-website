@@ -15,9 +15,9 @@ function PreviewPane() {
         </div>
         <div className="text-center mb-6">
           <div className="bg-purple-600 rounded-full w-16 h-16 mx-auto mb-4 flex items-center justify-center">
-            {workspaceData?.logo ? (
+            {workspaceData?.logoUrl ? (
               <img
-                src={workspaceData.logo}
+                src={workspaceData.logoUrl}
                 alt="logo"
                 className="rounded-full w-16 h-16 object-cover"
               />

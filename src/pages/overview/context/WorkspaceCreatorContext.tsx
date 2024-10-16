@@ -1,5 +1,5 @@
 import React, { Dispatch, SetStateAction, useState } from "react";
-import { Workspace } from "../types/overview.type";
+import { QuestionType, Workspace } from "../types/overview.type";
 
 interface WorkspaceCreatorContextProps {
   workspaceData: Workspace;
@@ -7,7 +7,6 @@ interface WorkspaceCreatorContextProps {
   handleRemoveQuestion: (id: string) => void;
   handleAddQuestion: (e: any) => void;
   onChangeQuestionText: (e: any, questionId: string) => void;
-  handleCreateWorkspace: (e: any) => void;
 }
 
 /**
@@ -20,7 +19,8 @@ const WorkspaceCreatorContext =
       name: "",
       customMessage: "",
       id: "",
-      logo: "",
+      logoUrl: "",
+      logoFile: null,
       questions: [],
       title: "",
     },
@@ -28,7 +28,6 @@ const WorkspaceCreatorContext =
     handleRemoveQuestion: () => {},
     handleAddQuestion: () => {},
     onChangeQuestionText: () => {},
-    handleCreateWorkspace: () => {},
   });
 
 /**
@@ -46,7 +45,8 @@ function WorkspaceCreatorContextProvider({
     name: "",
     customMessage: "",
     id: "",
-    logo: "",
+    logoUrl: "",
+    logoFile: null,
     questions: [],
     title: "",
   });
@@ -66,7 +66,7 @@ function WorkspaceCreatorContextProvider({
           {
             id: Date.now().toString(),
             question: "",
-            type: "text",
+            type: QuestionType.SHORT_TEXT,
             index: prev.questions.length,
           },
         ],
@@ -111,11 +111,6 @@ function WorkspaceCreatorContextProvider({
     });
   };
 
-  const handleCreateWorkspace = (e: any) => {
-    e.preventDefault();
-    console.log(workspaceData);
-  };
-
   return (
     <WorkspaceCreatorContext.Provider
       value={{
@@ -124,7 +119,6 @@ function WorkspaceCreatorContextProvider({
         handleRemoveQuestion,
         handleAddQuestion,
         onChangeQuestionText,
-        handleCreateWorkspace,
       }}
     >
       {children}
