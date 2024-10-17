@@ -10,10 +10,10 @@ const workspaceQuestionSchema = z.object({
 // Define Workspace schema without the id field
 const createWorkspaceSchema = z.object({
   name: z.string(),
-  logoUrl: z.string(),
+  logoFile: z.instanceof(File),
   title: z.string(),
   customMessage: z.string().optional(),
-  questions: z.array(workspaceQuestionSchema),
+  workspaceQuestions: z.array(workspaceQuestionSchema),
 });
 
 export default createWorkspaceSchema;

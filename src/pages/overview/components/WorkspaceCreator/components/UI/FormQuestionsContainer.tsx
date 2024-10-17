@@ -6,7 +6,7 @@ import FormQuestion from "./FormQuestion";
 
 function FormQuestionsContainer() {
   let {
-    workspaceData: { questions },
+    workspaceData: { workspaceQuestions },
     setWorkspaceData,
     handleAddQuestion,
   } = useContext(WorkspaceCreatorContext);
@@ -21,7 +21,7 @@ function FormQuestionsContainer() {
     let sourceIndex = result.source.index;
     let destinationIndex = result.destination.index;
     setWorkspaceData((prev) => {
-      const updatedQuestions = [...prev.questions];
+      const updatedQuestions = [...prev.workspaceQuestions];
       updatedQuestions[sourceIndex].index = destinationIndex;
       updatedQuestions[destinationIndex].index = sourceIndex;
       return {
@@ -37,7 +37,7 @@ function FormQuestionsContainer() {
         <Droppable type="group" droppableId="droppable-area-1">
           {(provided) => (
             <div {...provided.droppableProps} ref={provided.innerRef}>
-              {questions
+              {workspaceQuestions
                 .sort((a, b) => a.index - b.index)
                 .map((item) => (
                   <Draggable

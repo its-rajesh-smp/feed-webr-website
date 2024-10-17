@@ -35,7 +35,7 @@ function PreviewPane() {
         <div className="mb-6">
           <h3 className="font-bold mb-2">QUESTIONS</h3>
           <ul className="list-disc pl-5 space-y-2 text-gray-600">
-            {workspaceData?.questions
+            {workspaceData?.workspaceQuestions
               .sort((a, b) => a.index - b.index)
               ?.map(({ question, id }) => (
                 <li key={id}>{question}</li>

@@ -2,17 +2,17 @@ export enum QuestionType {
   SHORT_TEXT = "SHORT_TEXT",
 }
 
-export interface Workspace {
+export interface IWorkspace {
   id: string;
   name: string;
   logoFile?: File | null;
   logoUrl: string;
   title: string;
   customMessage: string;
-  questions: WorkspaceQuestion[];
+  workspaceQuestions: IWorkspaceQuestion[];
 }
 
-export interface WorkspaceQuestion {
+export interface IWorkspaceQuestion {
   id: string;
   question: string;
   type: QuestionType;

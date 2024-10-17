@@ -6,21 +6,19 @@ import {
 } from "@/common/components/shadcn/ui/avatar";
 import { Card, CardContent } from "@/common/components/shadcn/ui/card";
 import { MoreVertical } from "lucide-react";
+import { IWorkspace } from "../../types/overview.type";
 
-function Workspace() {
+function Workspace({ title, logoUrl }: IWorkspace) {
   return (
     <Card>
       <CardContent className="flex items-center justify-between p-4">
         <div className="flex items-center space-x-4">
           <Avatar>
-            <AvatarImage
-              src="/placeholder.svg?height=40&width=40"
-              alt="Avatar"
-            />
+            <AvatarImage src={logoUrl} alt="Avatar" />
             <AvatarFallback>G</AvatarFallback>
           </Avatar>
           <div>
-            <p className="text-sm font-medium">google</p>
+            <p className="text-sm font-medium">{title}</p>
             <p className="text-xs text-muted-foreground">Videos: 0 Text: 1</p>
           </div>
         </div>

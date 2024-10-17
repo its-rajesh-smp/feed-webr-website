@@ -1,9 +1,9 @@
 import WorkspaceCreatorContext from "@/pages/overview/context/WorkspaceCreatorContext";
-import { WorkspaceQuestion } from "@/pages/overview/types/overview.type";
+import { IWorkspaceQuestion } from "@/pages/overview/types/overview.type";
 import { useContext } from "react";
 import { RiDraggable } from "react-icons/ri";
 
-function FormQuestion({ id, question }: WorkspaceQuestion) {
+function FormQuestion({ id, question }: IWorkspaceQuestion) {
   const { onChangeQuestionText } = useContext(WorkspaceCreatorContext);
 
   return (

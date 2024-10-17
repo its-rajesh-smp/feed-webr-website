@@ -59,7 +59,6 @@ function Form() {
 
       const payload = {
         ...validatedData,
-        logoFile: workspaceData.logoFile,
       };
 
       const data = await createWorkspace({

@@ -1,9 +1,9 @@
 import React, { Dispatch, SetStateAction, useState } from "react";
-import { QuestionType, Workspace } from "../types/overview.type";
+import { QuestionType, IWorkspace } from "../types/overview.type";
 
 interface WorkspaceCreatorContextProps {
-  workspaceData: Workspace;
-  setWorkspaceData: Dispatch<SetStateAction<Workspace>>;
+  workspaceData: IWorkspace;
+  setWorkspaceData: Dispatch<SetStateAction<IWorkspace>>;
   handleRemoveQuestion: (id: string) => void;
   handleAddQuestion: (e: any) => void;
   onChangeQuestionText: (e: any, questionId: string) => void;
@@ -21,7 +21,7 @@ const WorkspaceCreatorContext =
       id: "",
       logoUrl: "",
       logoFile: null,
-      questions: [],
+      workspaceQuestions: [],
       title: "",
     },
     setWorkspaceData: () => {},
@@ -41,13 +41,13 @@ function WorkspaceCreatorContextProvider({
 }: {
   children: React.ReactNode;
 }) {
-  const [workspaceData, setWorkspaceData] = useState<Workspace>({
+  const [workspaceData, setWorkspaceData] = useState<IWorkspace>({
     name: "",
     customMessage: "",
     id: "",
     logoUrl: "",
     logoFile: null,
-    questions: [],
+    workspaceQuestions: [],
     title: "",
   });
 
@@ -61,13 +61,13 @@ function WorkspaceCreatorContextProvider({
     setWorkspaceData((prev) => {
       return {
         ...prev,
-        questions: [
-          ...prev.questions,
+        workspaceQuestions: [
+          ...prev.workspaceQuestions,
           {
             id: Date.now().toString(),
             question: "",
             type: QuestionType.SHORT_TEXT,
-            index: prev.questions.length,
+            index: prev.workspaceQuestions.length,
           },
         ],
       };
@@ -83,7 +83,9 @@ function WorkspaceCreatorContextProvider({
     setWorkspaceData((prev) => {
       return {
         ...prev,
-        questions: prev.questions.filter((item) => item.id !== id),
+        workspaceQuestions: prev.workspaceQuestions.filter(
+          (item) => item.id !== id
+        ),
       };
     });
   };
@@ -98,7 +100,7 @@ function WorkspaceCreatorContextProvider({
     setWorkspaceData((prev) => {
       return {
         ...prev,
-        questions: prev.questions.map((item) => {
+        workspaceQuestions: prev.workspaceQuestions.map((item) => {
           if (item.id === questionId) {
             return {
               ...item,
