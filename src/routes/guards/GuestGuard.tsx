@@ -1,5 +1,6 @@
 import { useAppSelector } from "@/common/hooks/useAppSelector";
 import { Navigate, Outlet } from "react-router-dom";
+import PRIVATE_ROUTE_PATHS from "../private/privateRoutePaths.const";
 
 function GuestGuard() {
   const isCurrentUserAuthenticated = useAppSelector(
@@ -9,7 +10,7 @@ function GuestGuard() {
   if (!isCurrentUserAuthenticated) {
     return <Outlet />;
   } else {
-    return <Navigate to="/practice" />;
+    return <Navigate to={PRIVATE_ROUTE_PATHS.OVERVIEW} />;
   }
 }
 

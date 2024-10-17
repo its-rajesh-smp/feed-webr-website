@@ -5,12 +5,21 @@ import {
   AvatarImage,
 } from "@/common/components/shadcn/ui/avatar";
 import { Card, CardContent } from "@/common/components/shadcn/ui/card";
+import getRoutePath from "@/common/utils/route.util";
+import PRIVATE_ROUTE_PATHS from "@/routes/private/privateRoutePaths.const";
 import { MoreVertical } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import { IWorkspace } from "../../types/overview.type";
 
-function Workspace({ title, logoUrl }: IWorkspace) {
+function Workspace({ title, logoUrl, id }: IWorkspace) {
+  const navigate = useNavigate();
+
+  const onClickHandler = () => {
+    navigate(getRoutePath(PRIVATE_ROUTE_PATHS.DASHBOARD, { workspaceId: id }));
+  };
+
   return (
-    <Card>
+    <Card onClick={onClickHandler}>
       <CardContent className="flex items-center justify-between p-4">
         <div className="flex items-center space-x-4">
           <Avatar>
