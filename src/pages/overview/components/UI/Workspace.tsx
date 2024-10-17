@@ -6,7 +6,7 @@ import {
 } from "@/common/components/shadcn/ui/avatar";
 import { Card, CardContent } from "@/common/components/shadcn/ui/card";
 import getRoutePath from "@/common/utils/route.util";
-import PRIVATE_ROUTE_PATHS from "@/routes/private/privateRoutePaths.const";
+import PRIVATE_ROUTE_PATHS from "@/routes/constants/privatePath.const";
 import { MoreVertical } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { IWorkspace } from "../../types/overview.type";
