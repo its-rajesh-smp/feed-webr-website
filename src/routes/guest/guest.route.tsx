@@ -1,4 +1,5 @@
 import Auth from "@/pages/auth/Auth";
+import CollectReview from "@/pages/collect-review/CollectReview";
 import GuestGuard from "../guards/GuestGuard";
 
 const guestRoutes = [
@@ -18,6 +19,10 @@ const guestRoutes = [
         element: <Auth />,
       },
     ],
+  },
+  {
+    path: "/:accessUrl",
+    element: <CollectReview />,
   },
 ];
 

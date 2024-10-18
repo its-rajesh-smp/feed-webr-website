@@ -1,6 +1,5 @@
 import Avatar from "@/common/components/UI/Avatar";
 import Link from "@/common/components/UI/Link";
-import { ActivitySquareIcon } from "lucide-react";
 import { BiLink } from "react-icons/bi";
 
 function DashboardHeader() {
@@ -16,10 +15,11 @@ function DashboardHeader() {
           <Link>feedwebr.com/jhondoe</Link>
         </div>
       </div>
-      <div className="flex gap-2 items-center pr-10">
+      {/* TODO: Add activity to show realtime users  */}
+      {/* <div className="flex gap-2 items-center pr-10">
         <ActivitySquareIcon className="text-zinc-600" />
         <p className="text-xl">10</p>
-      </div>
+      </div> */}
     </div>
   );
 }
