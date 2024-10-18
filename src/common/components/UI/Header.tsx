@@ -1,4 +1,4 @@
-import { Avatar, AvatarFallback, AvatarImage } from "../shadcn/ui/avatar";
+import Avatar from "./Avatar";
 import BrandLogo from "./BrandLogo";
 
 interface HeaderProps {
@@ -14,10 +14,7 @@ function Header({ showBrand = true }: HeaderProps) {
           textClassName="text-primary"
         />
       )}
-      <Avatar className=" cursor-pointer w-8 h-8">
-        <AvatarImage src="https://github.com/shadcn.png" alt="Avatar" />
-        <AvatarFallback>G</AvatarFallback>
-      </Avatar>
+      <Avatar />
     </div>
   );
 }
