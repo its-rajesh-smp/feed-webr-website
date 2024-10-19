@@ -11,8 +11,8 @@ export const WORKSPACE_FIELDS = gql`
 `;
 
 export const GET_WORKSPACES = gql`
-  query GetWorkspaces {
-    workspaces: getAllWorkspaces {
+  query GetWorkspaces($name: String) {
+    workspaces: getAllWorkspaces(name: $name) {
       ...WorkspaceFields
     }
   }

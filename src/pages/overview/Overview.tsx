@@ -1,24 +1,20 @@
 import Header from "@/common/components/UI/Header";
 import PageContainer from "@/common/components/UI/PageContainer";
 import { useAppDispatch } from "@/common/hooks/useAppDispatch";
-import { useQuery } from "@apollo/client";
+import { useEffect } from "react";
+import { getWorkspacesAct } from "./actions/getWorkspaces.act";
 import OverviewCardsContainer from "./components/OverviewCardsContainer";
 import CreateWorkspace from "./components/UI/CreateWorkspace";
 import SearchWorkspace from "./components/UI/SearchWorkspace";
 import WorkspacesContainer from "./components/WorkspacesContainer";
-import { setWorkspaces } from "./reducers/workspaceReducer";
-import { GET_WORKSPACES } from "./services/overview.gql";
-import { WorkspaceCreatorContextProvider } from "./context/WorkspaceCreatorContext";
 
 function Overview() {
   const dispatch = useAppDispatch();
 
-  useQuery(GET_WORKSPACES, {
-    onCompleted: (response) => {
-      console.log(response);
-      dispatch(setWorkspaces(response?.workspaces));
-    },
-  });
+  // Get all workspaces
+  useEffect(() => {
+    dispatch(getWorkspacesAct());
+  }, []);
 
   return (
     <PageContainer className="mx-auto space-y-8">
