@@ -1,4 +1,3 @@
-import { Button } from "@/common/components/shadcn/button";
 import {
   Avatar,
   AvatarFallback,
@@ -7,7 +6,6 @@ import {
 import { Card, CardContent } from "@/common/components/shadcn/ui/card";
 import getRoutePath from "@/common/utils/route.util";
 import PRIVATE_ROUTE_PATHS from "@/routes/constants/privatePath.const";
-import { MoreVertical } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { IWorkspace } from "../../types/overview.type";
 
@@ -30,12 +28,11 @@ function Workspace({ title, logoUrl, id }: IWorkspace) {
           </Avatar>
           <div>
             <p className="text-sm font-medium">{title}</p>
-            <p className="text-xs text-muted-foreground">Videos: 0 Text: 1</p>
+            <p className="text-xs text-muted-foreground">Total feedbacks : 0</p>
           </div>
         </div>
-        <Button variant="ghost" size="icon">
-          <MoreVertical className="h-4 w-4" />
-        </Button>
+        {/* TODO: Add button to remove the workspace */}
+        {/* <WorkspaceAction /> */}
       </CardContent>
     </Card>
   );

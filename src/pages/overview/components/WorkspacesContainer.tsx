@@ -1,14 +1,12 @@
-import { useQuery } from "@apollo/client";
+import { useAppSelector } from "@/common/hooks/useAppSelector";
 import Workspace from "./UI/Workspace";
-import { GET_WORKSPACES } from "../services/overview.gql";
-import { IWorkspace } from "../types/overview.type";
 
 function WorkspacesContainer() {
-  const { data } = useQuery(GET_WORKSPACES);
+  const { workspaces } = useAppSelector((state) => state.workspaceReducer);
 
   return (
     <div className="flex flex-col gap-4">
-      {data?.workspaces.map((workspace: IWorkspace) => (
+      {workspaces?.map((workspace) => (
         <Workspace key={workspace.id} {...workspace} />
       ))}
     </div>

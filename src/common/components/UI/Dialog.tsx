@@ -9,11 +9,12 @@ export interface DialogProps {
   children?: React.ReactNode;
   trigger?: React.ReactNode;
   open?: boolean;
+  onOpenChange?: (open: boolean) => void;
 }
 
-function Dialog({ children, trigger, open }: DialogProps) {
+function Dialog({ children, trigger, open, onOpenChange }: DialogProps) {
   return (
-    <DialogPrimitive open={open}>
+    <DialogPrimitive onOpenChange={onOpenChange} open={open}>
       <DialogTrigger className={`${!trigger && "hidden"}`}>
         {trigger && trigger}
       </DialogTrigger>

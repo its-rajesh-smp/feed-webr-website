@@ -1,5 +1,6 @@
 import React, { Dispatch, SetStateAction, useState } from "react";
-import { QuestionType, IWorkspace } from "../types/overview.type";
+import { IWorkspace, QuestionType } from "../types/overview.type";
+import { MAX_UPLOAD_SIZE } from "@/common/constants/file.const";
 
 interface WorkspaceCreatorContextProps {
   workspaceData: IWorkspace;
@@ -7,6 +8,8 @@ interface WorkspaceCreatorContextProps {
   handleRemoveQuestion: (id: string) => void;
   handleAddQuestion: (e: any) => void;
   onChangeQuestionText: (e: any, questionId: string) => void;
+  setIsCreateWorkspaceDialogOpen: Dispatch<SetStateAction<boolean>>;
+  onClickImageChange: (e: any) => void;
 }
 
 /**
@@ -28,6 +31,8 @@ const WorkspaceCreatorContext =
     handleRemoveQuestion: () => {},
     handleAddQuestion: () => {},
     onChangeQuestionText: () => {},
+    setIsCreateWorkspaceDialogOpen: () => {},
+    onClickImageChange: () => {},
   });
 
 /**
@@ -38,8 +43,10 @@ const WorkspaceCreatorContext =
  */
 function WorkspaceCreatorContextProvider({
   children,
+  setIsCreateWorkspaceDialogOpen,
 }: {
   children: React.ReactNode;
+  setIsCreateWorkspaceDialogOpen: Dispatch<SetStateAction<boolean>>;
 }) {
   const [workspaceData, setWorkspaceData] = useState<IWorkspace>({
     name: "",
@@ -113,6 +120,42 @@ function WorkspaceCreatorContextProvider({
     });
   };
 
+  /**
+   * Handle image change
+   * @param e event
+   */
+  const onClickImageChange = (e: any) => {
+    e.preventDefault();
+    const newDocument = document.createElement("input");
+    newDocument.type = "file";
+    newDocument.accept = "image/*";
+    newDocument.multiple = false;
+
+    newDocument.onchange = (event) => {
+      const file = (event.target as HTMLInputElement).files?.[0];
+
+      // Validate file size
+      if (file && file?.size > MAX_UPLOAD_SIZE) {
+        alert("File size must be less than 5MB");
+        return;
+      }
+
+      if (file) {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+
+        reader.onload = () => {
+          setWorkspaceData((prev) => ({
+            ...prev,
+            logoUrl: reader.result as string,
+            logoFile: file,
+          }));
+        };
+      }
+    };
+    newDocument.click();
+  };
+
   return (
     <WorkspaceCreatorContext.Provider
       value={{
@@ -121,6 +164,8 @@ function WorkspaceCreatorContextProvider({
         handleRemoveQuestion,
         handleAddQuestion,
         onChangeQuestionText,
+        setIsCreateWorkspaceDialogOpen,
+        onClickImageChange,
       }}
     >
       {children}

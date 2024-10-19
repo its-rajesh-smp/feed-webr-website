@@ -3,6 +3,7 @@ import { cva, type VariantProps } from "class-variance-authority";
 import * as React from "react";
 
 import { cn } from "@/common/lib/utils";
+import { Loader } from "lucide-react";
 
 const buttonVariants = cva(
   "inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50",
@@ -40,6 +41,7 @@ export interface ButtonProps
   asChild?: boolean;
   icon?: React.ReactNode;
   containerClassName?: string;
+  loading?: boolean;
 }
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
@@ -51,11 +53,26 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       asChild = false,
       containerClassName,
       icon,
+      loading,
       ...props
     },
     ref
   ) => {
     const Comp = asChild ? Slot : "button";
+
+    if (loading) {
+      return (
+        <Comp
+          className={` flex gap-2 items-center ${cn(
+            buttonVariants({ variant, size, className })
+          )}`}
+          ref={ref}
+          {...props}
+        >
+          <Loader className="w-4 h-4 animate-spin" />
+        </Comp>
+      );
+    }
 
     if (icon) {
       return (

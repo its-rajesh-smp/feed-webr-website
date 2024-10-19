@@ -1,4 +1,3 @@
-import { WorkspaceCreatorContextProvider } from "../../context/WorkspaceCreatorContext";
 import Form from "./components/Form";
 import PreviewPane from "./components/PreviewPane";
 
@@ -12,10 +11,8 @@ function WorkspaceCreator() {
       </p>
 
       <div className=" relative grid grid-cols-1 md:grid-cols-2 gap-6">
-        <WorkspaceCreatorContextProvider>
-          <PreviewPane />
-          <Form />
-        </WorkspaceCreatorContextProvider>
+        <PreviewPane />
+        <Form />
       </div>
     </div>
   );

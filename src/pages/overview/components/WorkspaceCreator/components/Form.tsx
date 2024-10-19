@@ -5,8 +5,9 @@ import { Label } from "@/common/components/shadcn/ui/label";
 import { Textarea } from "@/common/components/shadcn/ui/textarea";
 import { useContext } from "react";
 
-import { MAX_UPLOAD_SIZE } from "@/common/constants/file.const";
+import { useAppDispatch } from "@/common/hooks/useAppDispatch";
 import WorkspaceCreatorContext from "@/pages/overview/context/WorkspaceCreatorContext";
+import { addWorkspace } from "@/pages/overview/reducers/workspaceReducer";
 import createWorkspaceSchema from "@/pages/overview/schemas/createWorkspace.schema";
 import { CREATE_WORKSPACE } from "@/pages/overview/services/overview.gql";
 import { useMutation } from "@apollo/client";
@@ -14,44 +15,21 @@ import { ThumbsUp } from "lucide-react";
 import FormQuestionsContainer from "./UI/FormQuestionsContainer";
 
 function Form() {
-  const { workspaceData, setWorkspaceData } = useContext(
-    WorkspaceCreatorContext
-  );
+  const {
+    workspaceData,
+    setWorkspaceData,
+    setIsCreateWorkspaceDialogOpen,
+    onClickImageChange,
+  } = useContext(WorkspaceCreatorContext);
 
   const [createWorkspace, { loading }] = useMutation(CREATE_WORKSPACE);
 
-  const onClickImageChange = (e: any) => {
-    e.preventDefault();
-    const newDocument = document.createElement("input");
-    newDocument.type = "file";
-    newDocument.accept = "image/*";
-    newDocument.multiple = false;
+  const dispatch = useAppDispatch();
 
-    newDocument.onchange = (event) => {
-      const file = (event.target as HTMLInputElement).files?.[0];
-
-      // Validate file size
-      if (file && file?.size > MAX_UPLOAD_SIZE) {
-        alert("File size must be less than 5MB");
-        return;
-      }
-
-      if (file) {
-        const reader = new FileReader();
-        reader.readAsDataURL(file);
-
-        reader.onload = () => {
-          setWorkspaceData((prev) => ({
-            ...prev,
-            logoUrl: reader.result as string,
-            logoFile: file,
-          }));
-        };
-      }
-    };
-    newDocument.click();
-  };
-
+  /**
+   * Handle create workspace
+   * @param e event
+   */
   const handleCreateWorkspace = async (e: any) => {
     e.preventDefault();
     try {
@@ -61,12 +39,13 @@ function Form() {
         ...validatedData,
       };
 
-      const data = await createWorkspace({
+      const response = await createWorkspace({
         variables: {
           workspaceInput: payload,
         },
       });
-      console.log(data);
+      dispatch(addWorkspace(response?.data?.workspace));
+      setIsCreateWorkspaceDialogOpen(false);
     } catch (error) {
       console.log(error);
     }
@@ -146,6 +125,7 @@ function Form() {
           </div>
 
           <Button
+            loading={loading}
             onClick={handleCreateWorkspace}
             type="submit"
             className="w-full"
