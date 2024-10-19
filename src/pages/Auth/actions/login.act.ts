@@ -6,8 +6,6 @@ import { LOGIN_USER } from "../services/auth.gql";
 
 export const loginAct = (userCredentials: any) => {
   return async (dispatch: AppDispatch, _: () => RootState) => {
-    // TODO: Call API to login the user with user credentials
-
     const response = await client.mutate({
       mutation: LOGIN_USER,
       variables: { userInput: userCredentials },
