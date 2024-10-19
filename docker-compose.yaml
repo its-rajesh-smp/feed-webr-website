@@ -1,14 +1,6 @@
 version: "3.8"
 
 services:
-  api:
-    image: feedwebr-api
-    ports:
-      - 3000:3000
-    env_file:
-      - ../api/.env
-    entrypoint: ["npm", "run", "start:dev"]
-
   website:
     image: feedwebr-website
     ports:
