@@ -1,13 +1,18 @@
 import React, { Dispatch, SetStateAction, useState } from "react";
-import { IWorkspace, QuestionType } from "../types/overview.type";
+import {
+  IWorkspace,
+  IWorkspaceQuestion,
+  QuestionType,
+} from "../types/overview.type";
 import { MAX_UPLOAD_SIZE } from "@/common/constants/file.const";
+import { MandatoryQuestions } from "../constants/overview.const";
 
 interface WorkspaceCreatorContextProps {
   workspaceData: IWorkspace;
   setWorkspaceData: Dispatch<SetStateAction<IWorkspace>>;
   handleRemoveQuestion: (id: string) => void;
   handleAddQuestion: (e: any) => void;
-  onChangeQuestionText: (e: any, questionId: string) => void;
+  onChangeQuestionText: (updatedQuestion: IWorkspaceQuestion) => void;
   setIsCreateWorkspaceDialogOpen: Dispatch<SetStateAction<boolean>>;
   onClickImageChange: (e: any) => void;
 }
@@ -54,7 +59,7 @@ function WorkspaceCreatorContextProvider({
     id: "",
     logoUrl: "",
     logoFile: null,
-    workspaceQuestions: [],
+    workspaceQuestions: [...MandatoryQuestions],
     title: "",
   });
 
@@ -103,15 +108,14 @@ function WorkspaceCreatorContextProvider({
    * @param {React.ChangeEvent<HTMLInputElement>} e The change event.
    * @param {string} questionId The id of the question to update.
    */
-  const onChangeQuestionText = (e: any, questionId: string) => {
+  const onChangeQuestionText = (updatedQuestion: IWorkspaceQuestion) => {
     setWorkspaceData((prev) => {
       return {
         ...prev,
         workspaceQuestions: prev.workspaceQuestions.map((item) => {
-          if (item.id === questionId) {
+          if (item.id === updatedQuestion.id) {
             return {
-              ...item,
-              question: e.target.value,
+              ...updatedQuestion,
             };
           }
           return item;

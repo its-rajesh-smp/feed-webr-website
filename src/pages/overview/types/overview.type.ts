@@ -1,5 +1,9 @@
 export enum QuestionType {
   SHORT_TEXT = "SHORT_TEXT",
+  NUMBER = "NUMBER",
+  EMAIL = "EMAIL",
+  SELECT = "SELECT",
+  CHECKBOX = "CHECKBOX",
 }
 
 export interface IWorkspace {
@@ -17,4 +21,6 @@ export interface IWorkspaceQuestion {
   question: string;
   type: QuestionType;
   index: number;
+  isMandatory?: boolean;
+  isRequired?: boolean;
 }

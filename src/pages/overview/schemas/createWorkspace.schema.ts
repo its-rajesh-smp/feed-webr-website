@@ -5,6 +5,8 @@ const workspaceQuestionSchema = z.object({
   question: z.string(),
   type: z.string(),
   index: z.number(),
+  isMandatory: z.boolean().default(false),
+  isRequired: z.boolean().default(false),
 });
 
 // Define Workspace schema without the id field
