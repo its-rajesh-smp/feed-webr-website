@@ -4,7 +4,7 @@ import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "@/components/ui/popover";
+} from "@/common/components/shadcn/ui/popover";
 import { logout } from "@/store/slices/authUserSlice";
 import { BiLogOut } from "react-icons/bi";
 import { Button } from "../shadcn/button";

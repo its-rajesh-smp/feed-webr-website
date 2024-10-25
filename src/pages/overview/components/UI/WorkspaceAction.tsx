@@ -3,7 +3,7 @@ import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "@/components/ui/popover";
+} from "@/common/components/shadcn/ui/popover";
 import { MoreVertical } from "lucide-react";
 import { RiDeleteBackLine } from "react-icons/ri";
 
