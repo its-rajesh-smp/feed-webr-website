@@ -13,6 +13,7 @@ import { CREATE_WORKSPACE } from "@/pages/overview/services/overview.gql";
 import { useMutation } from "@apollo/client";
 import { ThumbsUp } from "lucide-react";
 import FormQuestionsContainer from "./UI/FormQuestionsContainer";
+import { generateDefaultAccessUrl } from "@/common/utils/accessUrl.util";
 
 function Form() {
   const {
@@ -66,8 +67,7 @@ function Form() {
               placeholder="Enter space name"
             />
             <p className="text-sm text-gray-500 mt-1">
-              Public URL is: testimonial.to/
-              {workspaceData.name.toLowerCase().replace(/\s+/g, "-")}
+              Public URL is: {generateDefaultAccessUrl(workspaceData.name)}
             </p>
           </div>
 

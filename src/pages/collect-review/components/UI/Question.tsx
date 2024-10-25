@@ -1,10 +1,19 @@
-import { Textarea } from "@/common/components/shadcn/ui/textarea";
+import { IWorkspaceQuestion } from "@/pages/overview/types/overview.type";
+import QuestionAnswer from "./QuestionAnswer";
 
-function Question() {
+function Question({
+  question,
+  isMandatory,
+  isRequired,
+  type,
+}: IWorkspaceQuestion) {
   return (
     <div className="flex flex-col gap-1">
-      <p>Question 1</p>
-      <Textarea />
+      <p>
+        {question}{" "}
+        {(isMandatory || isRequired) && <span className="text-red-500">*</span>}{" "}
+      </p>
+      <QuestionAnswer type={type} />
     </div>
   );
 }
