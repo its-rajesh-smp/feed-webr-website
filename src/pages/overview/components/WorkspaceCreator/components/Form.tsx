@@ -39,8 +39,6 @@ function Form() {
         ...validatedData,
       };
 
-      console.log(payload);
-
       const response = await createWorkspace({
         variables: {
           workspaceInput: payload,

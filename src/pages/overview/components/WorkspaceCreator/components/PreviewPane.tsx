@@ -37,8 +37,13 @@ function PreviewPane() {
           <ul className="list-disc pl-5 space-y-2 text-gray-600">
             {workspaceData?.workspaceQuestions
               .sort((a, b) => a.index - b.index)
-              ?.map(({ question, id }) => (
-                <li key={id}>{question}</li>
+              ?.map(({ question, id, isMandatory, isRequired }) => (
+                <li key={id}>
+                  {question}{" "}
+                  {(isRequired || isMandatory) && (
+                    <span className="text-red-500">*</span>
+                  )}
+                </li>
               ))}
           </ul>
         </div>
