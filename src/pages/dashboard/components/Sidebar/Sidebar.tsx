@@ -39,10 +39,8 @@ function Sidebar() {
               textClassName="text-primary"
             />
           </SheetTitle>
-          <SheetDescription>
-            <SidebarContent />
-          </SheetDescription>
         </SheetHeader>
+        <SidebarContent />
       </SheetContent>
     </Sheet>
   );
