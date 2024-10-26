@@ -19,7 +19,7 @@ function Workspace({ title, logoUrl, id }: IWorkspace) {
   };
 
   return (
-    <Card onClick={onClickHandler}>
+    <Card className="cursor-pointer" onClick={onClickHandler}>
       <CardContent className="flex items-center justify-between p-4">
         <div className="flex items-center space-x-4">
           <Avatar>

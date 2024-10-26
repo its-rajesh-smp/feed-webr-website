@@ -13,6 +13,7 @@ export interface IWorkspace {
   logoUrl: string;
   title: string;
   customMessage: string;
+  accessUrl?: string;
   workspaceQuestions: IWorkspaceQuestion[];
 }
 
