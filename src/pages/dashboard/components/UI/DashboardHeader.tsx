@@ -8,6 +8,11 @@ function DashboardHeader() {
     (state) => state.dashboardReducer.currentWorkspace
   );
 
+  // Opening the form in a new tab
+  const openUrl = () => {
+    window.open(`/${currentWorkspace?.accessUrl}`, "_blank");
+  };
+
   return (
     <div className="h-fit flex  justify-between w-full border p-2 border-zinc-200 rounded-md shadow-sm">
       <div className="flex flex-col gap-2">
@@ -17,7 +22,7 @@ function DashboardHeader() {
         </div>
         <div className="flex text-xs gap-1 items-center">
           <BiLink />
-          <Link>{currentWorkspace?.accessUrl}</Link>
+          <Link onClick={openUrl}>{currentWorkspace?.accessUrl}</Link>
         </div>
       </div>
       {/* TODO: Add activity to show realtime users  */}
