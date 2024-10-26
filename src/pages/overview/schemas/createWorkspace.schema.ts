@@ -12,7 +12,7 @@ const workspaceQuestionSchema = z.object({
 // Define Workspace schema without the id field
 const createWorkspaceSchema = z.object({
   name: z.string(),
-  logoFile: z.instanceof(File),
+  logoFile: z.union([z.instanceof(File), z.null()]),
   title: z.string(),
   customMessage: z.string().optional(),
   workspaceQuestions: z.array(workspaceQuestionSchema),

@@ -6,7 +6,7 @@ const initialState: {
   totalWorkspaces: number;
 } = {
   workspaces: [],
-  totalWorkspaces: NaN,
+  totalWorkspaces: 0,
 };
 
 const workspaceSlice = createSlice({

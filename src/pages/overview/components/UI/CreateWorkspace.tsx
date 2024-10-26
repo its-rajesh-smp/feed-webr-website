@@ -13,6 +13,7 @@ function CreateWorkspace() {
     <Dialog
       open={isCreateWorkspaceDialogOpen}
       onOpenChange={setIsCreateWorkspaceDialogOpen}
+      triggerAsChild
       trigger={
         <Button
           onClick={() => setIsCreateWorkspaceDialogOpen(true)}

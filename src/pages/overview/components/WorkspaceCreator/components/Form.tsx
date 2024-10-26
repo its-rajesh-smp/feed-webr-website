@@ -33,6 +33,7 @@ function Form() {
   const handleCreateWorkspace = async (e: any) => {
     e.preventDefault();
     try {
+      console.log(workspaceData);
       const validatedData = await createWorkspaceSchema.parse(workspaceData);
 
       const payload = {
