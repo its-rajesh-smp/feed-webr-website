@@ -1,6 +1,6 @@
 import { Button } from "@/common/components/shadcn/button";
 import { ThumbsUp } from "lucide-react";
-import { useContext } from "react";
+import { Dispatch, SetStateAction, useContext } from "react";
 import feedbackFormContext from "../../context/feedbackFormContext";
 import AddAttachmentBtn from "../UI/AddAttachmentBtn";
 import AttachmentPreviewContainer from "../UI/AttachmentPreviewContainer";
@@ -8,7 +8,11 @@ import Question from "../UI/Question";
 import { useMutation } from "@apollo/client";
 import { SUBMIT_REVIEW_FORM } from "../../services/reviewForm.gql";
 
-function Form() {
+function Form({
+  setCurrentPageView,
+}: {
+  setCurrentPageView: Dispatch<SetStateAction<number>>;
+}) {
   const { workspace, questionResponses, attachments } =
     useContext(feedbackFormContext);
 
@@ -17,6 +21,7 @@ function Form() {
       reviewFormInput: {
         accessUrl: workspace?.accessUrl,
         questionResponses,
+        attachments,
       },
     },
   });
@@ -25,9 +30,11 @@ function Form() {
    * Handel form submission
    * @param e
    */
-  const onFormSubmit = (e: any) => {
+  const onFormSubmit = async (e: any) => {
     e.preventDefault();
-    submitReviewForm();
+    await submitReviewForm();
+    // FIXME: Magic number need to move to constant
+    setCurrentPageView(1);
   };
 
   return (
