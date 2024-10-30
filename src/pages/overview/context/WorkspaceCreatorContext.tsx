@@ -18,8 +18,7 @@ interface WorkspaceCreatorContextProps {
 }
 
 /**
- * The context for the WorkspaceItemCreator component. This context holds the data for the workspace item
- * and a function to update the data.
+ * The context for the WorkspaceItemCreator component.
  */
 const WorkspaceCreatorContext =
   React.createContext<WorkspaceCreatorContextProps>({
@@ -41,8 +40,7 @@ const WorkspaceCreatorContext =
   });
 
 /**
- * Provides the context for the WorkspaceItemCreator component. This context
- * holds the data for the workspace item and a function to update the data.
+ * Provides the context for the WorkspaceItemCreator component.
  * @param {{ children: React.ReactNode }} props The children of the component.
  * @returns {JSX.Element}
  */

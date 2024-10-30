@@ -6,6 +6,7 @@ function Question({
   isMandatory,
   isRequired,
   type,
+  id,
 }: IWorkspaceQuestion) {
   return (
     <div className="flex flex-col gap-1">
@@ -13,7 +14,7 @@ function Question({
         {question}{" "}
         {(isMandatory || isRequired) && <span className="text-red-500">*</span>}{" "}
       </p>
-      <QuestionAnswer type={type} />
+      <QuestionAnswer key={id} id={id} type={type} />
     </div>
   );
 }
