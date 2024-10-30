@@ -5,10 +5,10 @@ import { useContext } from "react";
 import feedbackFormContext from "../../context/feedbackFormContext";
 
 function Form() {
-  const { workspace } = useContext(feedbackFormContext);
+  const { workspace, onFormSubmit } = useContext(feedbackFormContext);
 
   return (
-    <div>
+    <form onSubmit={onFormSubmit}>
       <div className="text-center mb-6">
         <div className="bg-purple-600 rounded-full w-16 h-16 mx-auto mb-4 flex items-center justify-center">
           {workspace?.logoUrl ? (
@@ -33,19 +33,19 @@ function Form() {
         </ul>
       </div>
       <div className="space-y-2">
-        <Button
-          onClick={(e) => {
-            e.preventDefault();
-          }}
-          className="w-full flex items-center justify-center"
-        >
+        <Button className="w-full flex items-center justify-center">
           <Paperclip className="mr-2 h-4 w-4" /> Attach file
         </Button>
-        <Button variant="outline" className="w-full">
+        <Button
+          type="submit"
+          onClick={onFormSubmit}
+          variant="outline"
+          className="w-full"
+        >
           Submit
         </Button>
       </div>
-    </div>
+    </form>
   );
 }
 

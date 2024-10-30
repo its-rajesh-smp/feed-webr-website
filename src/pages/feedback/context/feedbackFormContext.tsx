@@ -5,8 +5,9 @@ import { SUBMIT_REVIEW_FORM } from "../services/reviewForm.gql";
 
 interface FeedbackFormContextProps {
   questionResponses: any;
-  onQuestionResponseChange: (questionId: string, answer: string) => void;
+  handleQuestionResponseChange: (questionId: string, answer: string) => void;
   workspace: IWorkspace;
+  onFormSubmit: (e: any) => void;
 }
 
 /**
@@ -14,7 +15,7 @@ interface FeedbackFormContextProps {
  */
 const feedbackFormContext = React.createContext<FeedbackFormContextProps>({
   questionResponses: [],
-  onQuestionResponseChange: () => {},
+  handleQuestionResponseChange: () => {},
   workspace: {
     name: "",
     customMessage: "",
@@ -24,6 +25,7 @@ const feedbackFormContext = React.createContext<FeedbackFormContextProps>({
     workspaceQuestions: [],
     title: "",
   },
+  onFormSubmit: () => {},
 });
 
 /**
@@ -44,17 +46,17 @@ const FeedbackFormContextProvider = ({
     variables: {
       reviewFormInput: {
         accessUrl: workspace?.accessUrl,
-        questionResponses: [
-          {
-            questionId: "13359e23-3730-41a3-a749-21db576dc406",
-            answer: "hello@gmail.com",
-          },
-        ],
+        questionResponses,
       },
     },
   });
 
-  const onQuestionResponseChange = (questionId: string, answer: string) => {
+  /**
+   * Handles the change event of a question response.
+   * @param questionId
+   * @param answer
+   */
+  const handleQuestionResponseChange = (questionId: string, answer: string) => {
     setQuestionResponses((prev: any) => {
       // Checking if the question response already exists
       const existingResponse = prev.find(
@@ -71,11 +73,23 @@ const FeedbackFormContextProvider = ({
     });
   };
 
-  console.log(questionResponses);
+  /**
+   * Handles the submit event of the form.
+   * @param e event
+   */
+  const onFormSubmit = (e: any) => {
+    e.preventDefault();
+    submitReviewForm();
+  };
 
   return (
     <feedbackFormContext.Provider
-      value={{ questionResponses, onQuestionResponseChange, workspace }}
+      value={{
+        questionResponses,
+        handleQuestionResponseChange,
+        workspace,
+        onFormSubmit,
+      }}
     >
       {children}
     </feedbackFormContext.Provider>

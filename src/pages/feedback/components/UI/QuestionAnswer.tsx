@@ -6,14 +6,14 @@ import { useContext } from "react";
 import feedbackFormContext from "../../context/feedbackFormContext";
 
 function QuestionAnswer({ type, id }: { type: string; id: string }) {
-  const { onQuestionResponseChange } = useContext(feedbackFormContext);
+  const { handleQuestionResponseChange } = useContext(feedbackFormContext);
 
   const onInputChange = (e: any) => {
-    onQuestionResponseChange(id, e.target.value);
+    handleQuestionResponseChange(id, e.target.value);
   };
 
   const onCheckboxChange = (isChecked: boolean) => {
-    onQuestionResponseChange(id, `${isChecked}`);
+    handleQuestionResponseChange(id, `${isChecked}`);
   };
 
   switch (type) {
