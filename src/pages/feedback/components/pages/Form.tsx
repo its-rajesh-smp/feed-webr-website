@@ -1,11 +1,34 @@
 import { Button } from "@/common/components/shadcn/button";
-import { Paperclip, ThumbsUp } from "lucide-react";
-import Question from "../UI/Question";
+import { ThumbsUp } from "lucide-react";
 import { useContext } from "react";
 import feedbackFormContext from "../../context/feedbackFormContext";
+import AddAttachmentBtn from "../UI/AddAttachmentBtn";
+import AttachmentPreviewContainer from "../UI/AttachmentPreviewContainer";
+import Question from "../UI/Question";
+import { useMutation } from "@apollo/client";
+import { SUBMIT_REVIEW_FORM } from "../../services/reviewForm.gql";
 
 function Form() {
-  const { workspace, onFormSubmit } = useContext(feedbackFormContext);
+  const { workspace, questionResponses, attachments } =
+    useContext(feedbackFormContext);
+
+  const [submitReviewForm, { loading }] = useMutation(SUBMIT_REVIEW_FORM, {
+    variables: {
+      reviewFormInput: {
+        accessUrl: workspace?.accessUrl,
+        questionResponses,
+      },
+    },
+  });
+
+  /**
+   * Handel form submission
+   * @param e
+   */
+  const onFormSubmit = (e: any) => {
+    e.preventDefault();
+    submitReviewForm();
+  };
 
   return (
     <form onSubmit={onFormSubmit}>
@@ -33,10 +56,10 @@ function Form() {
         </ul>
       </div>
       <div className="space-y-2">
-        <Button className="w-full flex items-center justify-center">
-          <Paperclip className="mr-2 h-4 w-4" /> Attach file
-        </Button>
+        {attachments?.length > 0 && <AttachmentPreviewContainer />}
+        <AddAttachmentBtn />
         <Button
+          loading={loading}
           type="submit"
           onClick={onFormSubmit}
           variant="outline"

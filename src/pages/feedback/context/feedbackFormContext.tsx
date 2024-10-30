@@ -1,13 +1,13 @@
 import { IWorkspace } from "@/pages/overview/types/overview.type";
-import { useMutation } from "@apollo/client";
 import React, { useState } from "react";
-import { SUBMIT_REVIEW_FORM } from "../services/reviewForm.gql";
 
 interface FeedbackFormContextProps {
   questionResponses: any;
   handleQuestionResponseChange: (questionId: string, answer: string) => void;
   workspace: IWorkspace;
-  onFormSubmit: (e: any) => void;
+  attachments: File[];
+  handleAddAttachment: (file: File[]) => void;
+  handelDeleteAddedAttachment: (name: String) => void;
 }
 
 /**
@@ -25,7 +25,9 @@ const feedbackFormContext = React.createContext<FeedbackFormContextProps>({
     workspaceQuestions: [],
     title: "",
   },
-  onFormSubmit: () => {},
+  attachments: [],
+  handleAddAttachment: () => {},
+  handelDeleteAddedAttachment: () => {},
 });
 
 /**
@@ -41,15 +43,7 @@ const FeedbackFormContextProvider = ({
   workspace: IWorkspace;
 }) => {
   const [questionResponses, setQuestionResponses] = useState<any>([]);
-
-  const [submitReviewForm] = useMutation(SUBMIT_REVIEW_FORM, {
-    variables: {
-      reviewFormInput: {
-        accessUrl: workspace?.accessUrl,
-        questionResponses,
-      },
-    },
-  });
+  const [attachments, setAttachments] = useState<File[]>([]);
 
   /**
    * Handles the change event of a question response.
@@ -74,12 +68,21 @@ const FeedbackFormContextProvider = ({
   };
 
   /**
-   * Handles the submit event of the form.
-   * @param e event
+   *  Handles the files add
+   * @param files
    */
-  const onFormSubmit = (e: any) => {
-    e.preventDefault();
-    submitReviewForm();
+  const handleAddAttachment = (files: File[]) => {
+    setAttachments((prev) => [...prev, ...files]);
+    console.log(files);
+  };
+
+  /**
+   *  Handles the file remove from attachment
+   * @param files
+   */
+  const handelDeleteAddedAttachment = (name: String) => {
+    // FIXME: Need to fix this currently we are deleting by  name
+    setAttachments((prev) => prev.filter((file) => file.name !== name));
   };
 
   return (
@@ -88,7 +91,10 @@ const FeedbackFormContextProvider = ({
         questionResponses,
         handleQuestionResponseChange,
         workspace,
-        onFormSubmit,
+
+        attachments,
+        handleAddAttachment,
+        handelDeleteAddedAttachment,
       }}
     >
       {children}

@@ -11,6 +11,7 @@ export interface DialogProps {
   triggerAsChild?: boolean;
   open?: boolean;
   onOpenChange?: (open: boolean) => void;
+  dialogContentClassName?: string;
 }
 
 function Dialog({
@@ -19,6 +20,7 @@ function Dialog({
   open,
   onOpenChange,
   triggerAsChild,
+  dialogContentClassName,
 }: DialogProps) {
   return (
     <DialogPrimitive onOpenChange={onOpenChange} open={open}>
@@ -28,8 +30,10 @@ function Dialog({
       >
         {trigger && trigger}
       </DialogTrigger>
-      <DialogContent className="max-w-6xl h-full p-0 md:px-2 lg:px-6 overflow-y-scroll">
-        <DialogTitle />
+      <DialogContent
+        className={`max-w-6xl h-full p-0 md:px-2 lg:px-6 overflow-y-scroll ${dialogContentClassName}`}
+      >
+        <DialogTitle className="hidden" />
         {children && children}
       </DialogContent>
     </DialogPrimitive>
