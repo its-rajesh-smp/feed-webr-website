@@ -1,3 +1,4 @@
+import getRoutePath from "@/common/utils/route.util";
 import PRIVATE_ROUTE_PATHS from "@/routes/constants/privatePath.const";
 import { HardDrive, Inbox, Settings, Text, Webhook } from "lucide-react";
 import { RiAttachment2 } from "react-icons/ri";
@@ -10,17 +11,23 @@ const SidebarMenus = {
     options: {
       all: {
         name: "All",
-        path: PRIVATE_ROUTE_PATHS.DASHBOARD_INDEX_ALL,
+        path: getRoutePath(PRIVATE_ROUTE_PATHS.DASHBOARD_INDEX, {
+          inboxType: "all",
+        }),
         icon: <HardDrive />,
       },
       text: {
-        name: "Text",
-        path: PRIVATE_ROUTE_PATHS.DASHBOARD_INDEX_TEXT,
+        name: "Texts",
+        path: getRoutePath(PRIVATE_ROUTE_PATHS.DASHBOARD_INDEX, {
+          inboxType: "texts",
+        }),
         icon: <Text />,
       },
       files: {
-        name: "Files",
-        path: PRIVATE_ROUTE_PATHS.DASHBOARD_INDEX_FILES,
+        name: "Attachments",
+        path: getRoutePath(PRIVATE_ROUTE_PATHS.DASHBOARD_INDEX, {
+          inboxType: "attachments",
+        }),
         icon: <RiAttachment2 />,
       },
     },

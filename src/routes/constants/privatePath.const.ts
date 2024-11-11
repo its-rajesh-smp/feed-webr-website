@@ -8,10 +8,7 @@ const PRIVATE_ROUTE_PATHS = {
   DASHBOARD: `/dashboard/:workspaceId`,
 
   // Dashboard Inbox
-  DASHBOARD_INDEX: `/dashboard/:workspaceId/inbox`,
-  DASHBOARD_INDEX_ALL: `/dashboard/:workspaceId/inbox/all`,
-  DASHBOARD_INDEX_TEXT: `/dashboard/:workspaceId/inbox/text`,
-  DASHBOARD_INDEX_FILES: `/dashboard/:workspaceId/inbox/files`,
+  DASHBOARD_INDEX: `/dashboard/:workspaceId/inbox/:inboxType`,
 
   // Dashboard Setting
   DASHBOARD_SETTING: `/dashboard/:workspaceId/setting`,

@@ -4,13 +4,13 @@ import { useNavigate, useParams } from "react-router-dom";
 
 function SidebarMenuOption({ name, icon, path }: any) {
   const navigate = useNavigate();
-  const params = useParams();
+  const params: any = useParams();
 
   const handleClick = () => {
     if (!params?.workspaceId) {
       return;
     }
-    navigate(getRoutePath(path, { workspaceId: params.workspaceId }));
+    navigate(getRoutePath(path, params));
   };
 
   return (

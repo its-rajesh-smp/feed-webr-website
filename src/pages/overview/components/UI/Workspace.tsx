@@ -14,7 +14,10 @@ function Workspace({ title, logoUrl, id }: IWorkspace) {
 
   const onClickHandler = () => {
     navigate(
-      getRoutePath(PRIVATE_ROUTE_PATHS.DASHBOARD_INDEX_ALL, { workspaceId: id })
+      getRoutePath(PRIVATE_ROUTE_PATHS.DASHBOARD_INDEX, {
+        workspaceId: id,
+        inboxType: "all",
+      })
     );
   };
 

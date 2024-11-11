@@ -24,20 +24,6 @@ const privateRoutes = [
           {
             path: PRIVATE_ROUTE_PATHS.DASHBOARD_INDEX,
             element: <Inbox />,
-            children: [
-              {
-                path: PRIVATE_ROUTE_PATHS.DASHBOARD_INDEX_ALL,
-                element: <Inbox />,
-              },
-              {
-                path: PRIVATE_ROUTE_PATHS.DASHBOARD_INDEX_TEXT,
-                element: <Inbox />,
-              },
-              {
-                path: PRIVATE_ROUTE_PATHS.DASHBOARD_INDEX_FILES,
-                element: <Inbox />,
-              },
-            ],
           },
           {
             path: PRIVATE_ROUTE_PATHS.DASHBOARD_SETTING,
