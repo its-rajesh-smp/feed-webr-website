@@ -6,17 +6,21 @@ import { LOGIN_USER } from "../services/auth.gql";
 
 export const loginAct = (userCredentials: any) => {
   return async (dispatch: AppDispatch, _: () => RootState) => {
-    const response = await client.mutate({
-      mutation: LOGIN_USER,
-      variables: { userInput: userCredentials },
-    });
-    localStorage.setItem("idToken", response?.data?.user?.idToken);
+    try {
+      const response = await client.mutate({
+        mutation: LOGIN_USER,
+        variables: { userInput: userCredentials },
+      });
+      localStorage.setItem("idToken", response?.data?.user?.idToken);
 
-    dispatch(
-      setAuthUser({
-        email: userCredentials.email,
-        isAuthenticated: true,
-      })
-    );
+      dispatch(
+        setAuthUser({
+          email: userCredentials.email,
+          isAuthenticated: true,
+        })
+      );
+    } catch (error) {
+      throw error;
+    }
   };
 };

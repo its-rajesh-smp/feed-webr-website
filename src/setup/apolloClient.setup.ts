@@ -2,6 +2,7 @@ import { getEnv } from "@/common/utils/env.util";
 import { ApolloClient, ApolloLink, InMemoryCache } from "@apollo/client";
 import { onError } from "@apollo/client/link/error";
 import createUploadLink from "apollo-upload-client/createUploadLink.mjs";
+import { toast } from "sonner";
 
 const httpLink = createUploadLink({
   uri: getEnv("SERVER_URL"),
@@ -17,6 +18,7 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
       console.error(
         `[GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}`
       );
+      toast.error(message);
     });
   }
   if (networkError) {
